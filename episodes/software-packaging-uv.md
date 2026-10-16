@@ -247,7 +247,7 @@ The file `__init__.py` is run when the package is imported with `import spacewal
 Let us see this in action.
 Launch a Python interpreter within the virtual environment.
 
-```sh
+```bash
 # Activate virtual environment
 source .venv/bin/activate     # Linux and macOS
 source .venv\Scripts\activate # Windows
@@ -275,7 +275,7 @@ This failed because our package is not installed in our virtual environment.
 
 Exit the Python console with the `exit()` command and install our package with `pip`.
 
-```sh
+```bash
 pip install .
 ```
 
@@ -301,14 +301,14 @@ It precedes commands to be run with the latest build of your project and ensures
 
 To see this in action, first delete the virtual environment we made earlier.
 
-```sh
+```bash
 deactivate
 rm -r .venv
 ```
 
 Then, launch the Python console using the `uv run` command:
 
-```sh
+```bash
 uv run python
 ```
 
@@ -348,7 +348,7 @@ The project structure now looks like the following - with new parts added that a
 The command `uv run` can also be used in place of the regular `python` command when running scripts.
 For example, to run the data analysis script:
 
-```sh
+```bash
 uv run eva_data_analysis.py
 ```
 
@@ -415,26 +415,26 @@ This will also remove any other packages which Requests depended on, provided ot
 
 Now we should be able to run our script.
 
-```sh
+```bash
 uv run eva_data_analysis.py
 ```
 
-### Adding code to our package
+### Adding modules to our package
 
 Python files within `spacewalks` are called submodules of the package.
 For example, a submodule called `gemini.py` could be imported using the namespace `spacewalks.gemini`.
 
-We want to include our `eva_data_analysis.py` code as a module in our new `spacewalks` package.
+We can include our `eva_data_analysis.py` code as a module in our new `spacewalks` package.
 Move the file to the `src/spacewalks` directory give it a more concise name.
 
-```sh
+```bash
 mv eva_data_analysis.py src/spacewalks/analyse.py
 ```
 
 Now, we can import functions from the analysis code.
 Launch the Python console and import the `read_json_to_dataframe` function from the `analyse` module.
 
-```sh
+```bash
 uv run python
 ```
 
@@ -449,7 +449,7 @@ exit()
 Python allows you to run installed modules as scripts with the `-m` option followed by the module namespace (e.g. `spacewalks.analyse`).
 Since `uv run` can be used in place of the `python` command, we can run the script with the following command:
 
-```sh
+```bash
 uv run -m spacewalks.analyse
 ```
 
