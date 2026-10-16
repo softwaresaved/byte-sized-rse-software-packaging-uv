@@ -434,9 +434,23 @@ mv eva_data_analysis.py src/spacewalks/analyse.py
 Now, we can import functions from the analysis code.
 Launch the Python console and import the `read_json_to_dataframe` function from the `analyse` module.
 
+```sh
+uv run python
+```
+
+In the Python console, run:
+
 ```python
 from spacewalks.analyse import read_json_to_dataframe
 help(read_json_to_dataframe)  # Displays help message (quit window with 'q')
+exit()
+```
+
+Python allows you to run installed modules as scripts with the `-m` option followed by the module namespace (e.g. `spacewalks.analyse`).
+Since `uv run` can be used in place of the `python` command, we can run the script with the following command:
+
+```sh
+uv run -m spacewalks.analyse
 ```
 
 #### Runtime and development dependencies
