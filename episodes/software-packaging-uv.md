@@ -183,6 +183,62 @@ readme = "README.md"
 dependencies = []
 ```
 
+### Importing code from our package
+
+A common convention is to keep Python code in a directory called `src` under the project root directory.
+The directory `spacewalks` represents the top-level package.
+The presence of an `__init__.py` file within `spacewalks` registers that directory as a package.
+The file `__init__.py` is run when the package is imported with `import spacewalks`.
+
+Let us see this in action.
+Launch a Python interpreter within the virtual environment.
+
+```sh
+# Activate virtual environment
+source .venv/bin/activate     # Linux and macOS
+source .venv\Scripts\activate # Windows
+
+# Launch Python interpreter
+python
+```
+
+Within the Python console, import the `main` function from `spacewalks`.
+
+```python
+from spacewalks import main
+```
+
+This should fail with the following output:
+
+```text
+Traceback (most recent call last):
+  File "<python-input-0>", line 1, in <module>
+    from spacewalks import main
+ModuleNotFoundError: No module named 'spacewalks'
+```
+
+This failed because our package is not installed in our virtual environment.
+
+Exit the Python console with the `exit()` command and install our package with `pip`.
+
+```sh
+pip install .
+```
+
+Now relaunch the Python console.
+Within the Python console, import the `main` function from `spacewalks` and execute it.
+
+```python
+from spacewalks import main
+main()
+```
+
+This should output:
+
+```text
+Hello from spacewalks!
+```
+
 ### `pyproject.toml` structure
 
 `pyproject.toml` is a configuration file introduced by [PEP 518](https://peps.python.org/pep-0518/) to standardise Python project setup. 
