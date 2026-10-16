@@ -239,6 +239,7 @@ This should output:
 Hello from spacewalks!
 ```
 
+
 ### `pyproject.toml` structure
 
 `pyproject.toml` is a configuration file introduced by [PEP 518](https://peps.python.org/pep-0518/) to standardise Python project setup. 
@@ -381,6 +382,26 @@ $ python eva_data_analysis.py
 ```
 
 Note: if you want to run scripts and commands using the Python command (i.e. without `uv run`) - the virtual environment must be active.
+
+### Adding code to our package
+
+Python files within `spacewalks` are called submodules of the package.
+For example, a submodule called `gemini.py` could be imported using the namespace `spacewalks.gemini`.
+
+We want to include our `eva_data_analysis.py` code as a module in our new `spacewalks` package.
+Move the file to the `src/spacewalks` directory give it a more concise name.
+
+```sh
+mv eva_data_analysis.py src/spacewalks/analyse.py
+```
+
+Now, we can import functions from the analysis code.
+Launch the Python console and import the `read_json_to_dataframe` function from the `analyse` module.
+
+```python
+from spacewalks.analyse import read_json_to_dataframe
+help(read_json_to_dataframe)  # Displays help message (quit window with 'q')
+```
 
 #### Runtime and development dependencies
 
