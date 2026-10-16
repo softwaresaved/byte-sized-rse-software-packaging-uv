@@ -285,6 +285,7 @@ Within the Python console, import the `main` function from `spacewalks` and exec
 ```python
 from spacewalks import main
 main()
+exit()
 ```
 
 This should output:
@@ -292,6 +293,87 @@ This should output:
 ```text
 Hello from spacewalks!
 ```
+
+### Running commands
+
+The `uv run` command can be used to run Python scripts or Python commands in your project environment.
+It precedes commands to be run with the latest build of your project and ensures the virtual environment contains the correct versions of project dependencies.
+
+To see this in action, first delete the virtual environment we made earlier.
+
+```sh
+deactivate
+rm -r .venv
+```
+
+Then, launch the Python console using the `uv run` command:
+
+```sh
+uv run python
+```
+
+Run the same code from before to verify we can still import from `spacewalks` then exit the Python interpreter.
+
+```python
+from spacewalks import main
+main()
+exit()
+```
+
+Uv creates a virtual environment (`.venv/`) and a lock file (`uv.lock`) the first time you run any project command, i.e., `uv add`, `uv run`, `uv sync`, or `uv lock`.
+The lock file contains details of all packages and their versions required by the project.
+
+During every `uv run` invocation, `uv` will verify that the lock file is up-to-date with the `pyproject.toml`, and that the environment is up-to-date with the lock file, keeping your project in-sync without the need for manual intervention.
+`uv run` guarantees that your command is run in an environment with all required dependencies at their locked versions.
+
+The project structure now looks like the following - with new parts added that all work together and allow `uv` to manage your project.
+
+```text
+.
+├── .git/
+├── .venv/
+├── data/
+├── docs/
+├── results/
+├── site/
+├── src/
+├── .gitignore
+├── .python-version
+├── README.md
+├── eva_data_analysis.py
+├── pyproject.toml
+└── uv.lock
+```
+
+The command `uv run` can also be used in place of the regular `python` command when running scripts.
+For example, to run the data analysis script:
+
+```sh
+uv run eva_data_analysis.py
+```
+
+However, we get the following import error:
+
+```text
+ModuleNotFoundError: No module named 'matplotlib'
+```
+
+This is because we have not specified any dependencies in the `pyproject.toml` file.
+
+::: callout
+### Manually updating the virtual environment
+
+Alternatively, you can use `uv sync` to manually update `.venv` then activate it before executing a Python command or running your Python script:
+
+```bash
+$ uv sync
+$ source .venv/bin/activate # macOS or Linux
+$ source .venv\Scripts\activate # Windows
+$ python
+```
+
+Note: if you want to run scripts and commands using the Python command (i.e. without `uv run`) - the virtual environment must be active.
+:::
 
 ### Managing dependencies
 
@@ -301,37 +383,13 @@ By looking at the code in `eva_data_analysis.py` Python script, we can tell we r
 We can use the `uv add` command to install them:
 
 ```bash
-$ uv add matplotlib
-$ uv add pandas
+$ uv add matplotlib pandas
 ```
 
 Alternatively, we can use the `uv add` command with the `-r` flag to add all dependencies from the `requirements.txt` file in a single go.
 
 ```bash
 $ uv add -r requirements.txt
-```
-
-You may notice that after running the `uv add` command - we now have a virtual environment in `.venv` directory (as well as the `uv.lock` file).
-Note that if you have an existing virtual environment in `.venv` directory, `uv` will continue to use that by default to record changes to it.
-If you do not have an existing environment, you can create it with the `uv venv` command - by default it will end up in `.venv` directory in the project root along with the `uv.lock` file.
-
-`uv` creates a virtual environment and the `uv.lock` file the first time you run any project command, i.e., `uv add`, `uv run`, `uv sync`, or `uv lock` (so you do not have to do it explicitly with `uv venv`).
-
-The project structure now looks like the following - with new parts added that all work together and allow `uv` to manage your project.
-
-```text
-.
-├── .git/
-├── .venv/
-│   ├── bin/
-│   ├── lib/
-│   └── pyvenv.cfg
-├── .gitignore
-├── .python-version
-├── README.md
-├── main.py
-├── pyproject.toml
-└── uv.lock
 ```
 
 You can also specify version constraints or alternative sources for packages with the `uv add` command.
@@ -355,32 +413,11 @@ $ uv remove requests
 
 This will also remove any other packages which Requests depended on, provided other project dependencies do not need them.
 
-### Running commands
+Now we should be able to run our script.
 
-`uv run` can be used to run Python scripts or Python commands in your project environment.
-
-```text
-$ uv run eva_data_analysis.py
+```sh
+uv run eva_data_analysis.py
 ```
-
-Prior to every `uv run` invocation, `uv` will verify that the lock file is up-to-date with the `pyproject.toml`, and that the environment is up-to-date with the lock file, keeping your project in-sync without the need for manual intervention. 
-`uv run` guarantees that your command is run in an environment with all required dependencies at their locked versions.
-
-Alternatively, you can use `uv sync` to manually update the environment (recorded in `.venv` folder) then activate it before executing a Python command or running your Python script:
-
-```bash
-$ uv sync
-$ source .venv/bin/activate # macOS or Linux
-$ python3 eva_data_analysis.py
-```
-
-```bash
-$ uv sync
-$ source .venv\Scripts\activate # Windows
-$ python eva_data_analysis.py
-```
-
-Note: if you want to run scripts and commands using the Python command (i.e. without `uv run`) - the virtual environment must be active.
 
 ### Adding code to our package
 
