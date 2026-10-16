@@ -250,7 +250,7 @@ Launch a Python interpreter within the virtual environment.
 ```bash
 # Activate virtual environment
 source .venv/bin/activate     # Linux and macOS
-source .venv\Scripts\activate # Windows
+source .venv/Scripts/activate # Windows
 
 # Launch Python interpreter
 python
@@ -368,7 +368,7 @@ Alternatively, you can use `uv sync` to manually update `.venv` then activate it
 ```bash
 $ uv sync
 $ source .venv/bin/activate # macOS or Linux
-$ source .venv\Scripts\activate # Windows
+$ source .venv/Scripts/activate # Windows
 $ python
 ```
 
