@@ -183,6 +183,60 @@ readme = "README.md"
 dependencies = []
 ```
 
+### `pyproject.toml` structure
+
+`pyproject.toml` is a configuration file introduced by [PEP 518](https://peps.python.org/pep-0518/) to standardise Python project setup. 
+Written in TOML (Tom’s Obvious, Minimal Language), it serves as a single source of truth for your project’s build system, metadata, and tool configurations. 
+It tells tools like `uv`, `pip`, `poetry`, or `hatch` how to construct your project.
+
+Unlike the older `setup.py` approach, which contains executable Python code, `pyproject.toml` uses a declarative, static configuration format. 
+
+`pyptoject.toml` structure contains three main components (tables):
+
+- **\[build-system]** table: defines the tools and other dependencies are needed to build your project's source distribution and wheel (built distribution).
+- **\[project]** table: stores metadata like your project’s name, version, and dependencies.
+- **\[tool]** table: configures settings for development tools like linters or formatters.
+
+The [build-system] table is not compulsory - you can use `pyproject.toml` just to store metadata and configuration. 
+If your project is an application (i.e. not designed to be published as a package), you do not need a [build-system] table. 
+`uv` will install and manage your dependencies, but it will not attempt to build the project itself.
+If you are building a package or library to be published, the [build-system] table is required so `uv` knows which build backend to use (e.g. `uv_build`, `setuptools`, `hatch`).
+
+For example:
+
+```text
+[build-system]
+requires = ["uv_build>=0.11.31,<0.12"]
+build-backend = "uv_build"
+```
+
+Or:
+```text
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+```
+
+`uv` supports various build backends as specified by [PEP 517](https://peps.python.org/pep-0517/), but also provides a native build backend `uv_build` that integrates tightly with `uv` to improve performance and user experience.
+
+When you create a new project with `uv init`, the `uv_build` backend will be used by default if you issue the `uv build` command to create the source distribution and wheel for your project.
+`uv_build` backend has reasonable defaults and requires zero configuration for most users so you do not actually have to declare it in `pyptoject.toml` unless you want to change it to another build backend or configure it further.
+
+You can initialise projects as packages even even you are just developing applications by running `uv init --package` - this will setup the project using a src-layout structure and setup `uv_build` as a build system in your `pyptoject.toml`.
+
+The [tool] table has tool-specific subtables, e.g., [tool.uv], [tool.hatch], content of which are defined by each tool. 
+You would need to consult the particular tool’s documentation to know what it can contain.
+
+A minimal `pyproject.toml` just requires the [project] table.
+
+::: callout
+### `pyproject.toml` guide
+
+`pyproject.toml` file can be used to declare many more configuration parameters about Python projects that we are not going into details here.
+A [good guide on writing `pyproject.toml` files](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/) can be found from [Python Packaging User Guides website](https://packaging.python.org/).
+
+:::
+
 ### Importing code from our package
 
 A common convention is to keep Python code in a directory called `src` under the project root directory.
@@ -238,61 +292,6 @@ This should output:
 ```text
 Hello from spacewalks!
 ```
-
-
-### `pyproject.toml` structure
-
-`pyproject.toml` is a configuration file introduced by [PEP 518](https://peps.python.org/pep-0518/) to standardise Python project setup. 
-Written in TOML (Tom’s Obvious, Minimal Language), it serves as a single source of truth for your project’s build system, metadata, and tool configurations. 
-It tells tools like `uv`, `pip`, `poetry`, or `hatch` how to construct your project.
-
-Unlike the older `setup.py` approach, which contains executable Python code, `pyproject.toml` uses a declarative, static configuration format. 
-
-`pyptoject.toml` structure contains three main components (tables):
-
-- **\[build-system]** table: defines the tools and other dependencies are needed to build your project's source distribution and wheel (built distribution).
-- **\[project]** table: stores metadata like your project’s name, version, and dependencies.
-- **\[tool]** table: configures settings for development tools like linters or formatters.
-
-The [build-system] table is not compulsory - you can use `pyproject.toml` just to store metadata and configuration. 
-If your project is an application (i.e. not designed to be published as a package), you do not need a [build-system] table. 
-`uv` will install and manage your dependencies, but it will not attempt to build the project itself.
-If you are building a package or library to be published, the [build-system] table is required so `uv` knows which build backend to use (e.g. `uv_build`, `setuptools`, `hatch`).
-
-For example:
-
-```text
-[build-system]
-requires = ["uv_build>=0.11.31,<0.12"]
-build-backend = "uv_build"
-```
-
-Or:
-```text
-[build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
-```
-
-`uv` supports various build backends as specified by [PEP 517](https://peps.python.org/pep-0517/), but also provides a native build backend `uv_build` that integrates tightly with `uv` to improve performance and user experience.
-
-When you create a new project with `uv init`, the `uv_build` backend will be used by default if you issue the `uv build` command to create the source distribution and wheel for your project.
-`uv_build` backend has reasonable defaults and requires zero configuration for most users so you do not actually have to declare it in `pyptoject.toml` unless you want to change it to another build backend or configure it further.
-
-You can initialise projects as packages even even you are just developing applications by running `uv init --package` - this will setup the project using a src-layout structure and setup `uv_build` as a build system in your `pyptoject.toml`.
-
-The [tool] table has tool-specific subtables, e.g., [tool.uv], [tool.hatch], content of which are defined by each tool. 
-You would need to consult the particular tool’s documentation to know what it can contain.
-
-A minimal `pyproject.toml` just requires the [project] table.
-
-::: callout
-### `pyproject.toml` guide
-
-`pyproject.toml` file can be used to declare many more configuration parameters about Python projects that we are not going into details here.
-A [good guide on writing `pyproject.toml` files](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/) can be found from [Python Packaging User Guides website](https://packaging.python.org/).
-
-:::
 
 ### Managing dependencies
 
