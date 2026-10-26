@@ -264,7 +264,7 @@ from spacewalks import main
 
 This should fail with the following output:
 
-```text
+```output
 Traceback (most recent call last):
   File "<python-input-0>", line 1, in <module>
     from spacewalks import main
@@ -290,7 +290,7 @@ exit()
 
 This should output:
 
-```text
+```output
 Hello from spacewalks!
 ```
 
@@ -313,7 +313,7 @@ spacewalks
 
 This should output:
 
-```text
+```output
 Hello from spacewalks!
 ```
 
@@ -370,7 +370,7 @@ uv run eva_data_analysis.py
 
 However, we get the following import error:
 
-```text
+```output
 ModuleNotFoundError: No module named 'matplotlib'
 ```
 
@@ -523,7 +523,7 @@ uv run -m pytest tests/
 
 They fail with the following output:
 
-```text
+```output
 ================================================ ERRORS ================================================
 _____________________________ ERROR collecting tests/test_eva_analysis.py ______________________________
 ImportError while importing test module '/Users/a.j.lyttle@bham.ac.uk/Repos/github.com/alexlyttle/spacewalks/tests/test_eva_analysis.py'.
