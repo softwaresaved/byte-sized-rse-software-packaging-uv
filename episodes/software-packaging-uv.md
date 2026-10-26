@@ -126,7 +126,7 @@ To migrate from the existing development workflow to use `uv`, you need to use `
 From within project root, do:
 
 ```bash
-$ uv init
+$ uv init spacewalks
 ```
 
 ::: callout
