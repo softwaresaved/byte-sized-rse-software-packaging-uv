@@ -329,18 +329,11 @@ deactivate
 rm -r .venv
 ```
 
-Then, launch the Python console using the `uv run` command:
+Now, if we try to run the `spacewalks` command we get an error saying the command is not found.
+Instead, run `spacewalks` using the `uv run` command:
 
 ```bash
-uv run python
-```
-
-Run the same code from before to verify we can still import from `spacewalks` then exit the Python interpreter.
-
-```python
-from spacewalks import main
-main()
-exit()
+uv run spacewalks
 ```
 
 Uv creates a virtual environment (`.venv/`) and a lock file (`uv.lock`) the first time you run any project command, i.e., `uv add`, `uv run`, `uv sync`, or `uv lock`.
@@ -381,7 +374,8 @@ However, we get the following import error:
 ModuleNotFoundError: No module named 'matplotlib'
 ```
 
-This is because we have not specified any dependencies in the `pyproject.toml` file.
+This is because uv uses the `pyproject.toml` file to create the virtual environment and install our package.
+This file should contain a list of dependencies required for our code to run.
 
 ::: callout
 ### Manually updating the virtual environment
@@ -392,7 +386,7 @@ Alternatively, you can use `uv sync` to manually update `.venv` then activate it
 $ uv sync
 $ source .venv/bin/activate # macOS or Linux
 $ source .venv/Scripts/activate # Windows
-$ python
+$ spacewalks
 ```
 
 Note: if you want to run scripts and commands using the Python command (i.e. without `uv run`) - the virtual environment must be active.
