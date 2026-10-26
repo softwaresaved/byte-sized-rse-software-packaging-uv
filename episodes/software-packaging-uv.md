@@ -300,9 +300,8 @@ Instead of launching the Python console, importing `main` from `spacewalks`, and
 
 ```bash
 $ spacewalks
+Hello from spacewalks!
 ```
-
-This should output `Hello from spacewalks!` as before.
 
 ## Running commands with `uv`
 
