@@ -68,7 +68,7 @@ $ source .venv/bin/activate # Mac or Linux
 
 ```bash
 $ python -m venv .venv
-$ source .venv\Scripts\activate # Windows
+$ source .venv/Scripts/activate # Windows
 (.venv) $
 ```
 
