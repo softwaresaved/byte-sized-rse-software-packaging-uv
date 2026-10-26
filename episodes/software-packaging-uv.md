@@ -81,7 +81,7 @@ Check out [the `uv` guides](https://docs.astral.sh/uv/guides/) covering the full
 
 :::
 
-## Initialising the package with `uv`
+## Initialising a package with `uv`
 
 Let's go to our example spacewalks code.
 
@@ -237,7 +237,7 @@ A [good guide on writing `pyproject.toml` files](https://packaging.python.org/en
 
 :::
 
-## Installing the package locally
+## Installing a package locally
 
 A common convention is to keep Python code in a directory called `src` under the project root directory.
 The directory `spacewalks` represents the top-level package.
@@ -476,7 +476,7 @@ At this point, you can delete `requirements.txt` and carry on running your Pytho
 Recall that if you are using `uv` to run Python commands - you do not have to activate the environment explicitly.
 If you prefer to use Python directly, you will have to activate your environment first but switch to `uv` for managing it from whatever tools you used before.
 
-## Adding modules to our package
+## Adding modules to a package
 
 Python files within `spacewalks` are called submodules of the package.
 For example, a submodule called `voskhod.py` (named after the space mission where Alexei Leonov took the world's first spacewalks) could be imported using the namespace `spacewalks.voskhod`.
@@ -562,7 +562,7 @@ from spacewalks.analyse import (
 
 <!-- TODO: add challenge or callout to include the CLI as the main project script -->
 
-## Building and distributing the package
+## Building and distributing a package
 
 `uv build` command can be used to build source distributions and binary distributions (wheels) for your project.
 
