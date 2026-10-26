@@ -311,11 +311,7 @@ Instead of launching the Python console, importing `main` from `spacewalks`, and
 spacewalks
 ```
 
-This should output:
-
-```output
-Hello from spacewalks!
-```
+This should output `Hello from spacewalks!` as before.
 
 ### Running commands
 
