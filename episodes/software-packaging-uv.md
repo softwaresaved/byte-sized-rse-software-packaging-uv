@@ -436,40 +436,6 @@ Now we should be able to run our script.
 uv run eva_data_analysis.py
 ```
 
-### Adding modules to our package
-
-Python files within `spacewalks` are called submodules of the package.
-For example, a submodule called `gemini.py` could be imported using the namespace `spacewalks.gemini`.
-
-We can include our `eva_data_analysis.py` code as a module in our new `spacewalks` package.
-Move the file to the `src/spacewalks` directory give it a more concise name.
-
-```bash
-mv eva_data_analysis.py src/spacewalks/analyse.py
-```
-
-Now, we can import functions from the analysis code.
-Launch the Python console and import the `read_json_to_dataframe` function from the `analyse` module.
-
-```bash
-uv run python
-```
-
-In the Python console, run:
-
-```python
-from spacewalks.analyse import read_json_to_dataframe
-help(read_json_to_dataframe)  # Displays help message (quit window with 'q')
-exit()
-```
-
-Python allows you to run installed modules as scripts with the `-m` option followed by the module namespace (e.g. `spacewalks.analyse`).
-Since `uv run` can be used in place of the `python` command, we can run the script with the following command:
-
-```bash
-uv run -m spacewalks.analyse
-```
-
 #### Runtime and development dependencies
 
 Tools like `uv` understand that there are two different types of dependencies: runtime dependencies and development dependencies. 
@@ -506,6 +472,40 @@ $ python3 -m pip install .[dev]
 At this point, you can delete `requirements.txt` and carry on running your Python scripts or Python tools with `uv`.
 Recall that if you are using `uv` to run Python commands - you do not have to activate the environment explicitly.
 If you prefer to use Python directly, you will have to activate your environment first but switch to `uv` for managing it from whatever tools you used before.
+
+### Adding modules to our package
+
+Python files within `spacewalks` are called submodules of the package.
+For example, a submodule called `gemini.py` could be imported using the namespace `spacewalks.gemini`.
+
+We can include our `eva_data_analysis.py` code as a module in our new `spacewalks` package.
+Move the file to the `src/spacewalks` directory give it a more concise name.
+
+```bash
+mv eva_data_analysis.py src/spacewalks/analyse.py
+```
+
+Now, we can import functions from the analysis code.
+Launch the Python console and import the `read_json_to_dataframe` function from the `analyse` module.
+
+```bash
+uv run python
+```
+
+In the Python console, run:
+
+```python
+from spacewalks.analyse import read_json_to_dataframe
+help(read_json_to_dataframe)  # Displays help message (quit window with 'q')
+exit()
+```
+
+Python allows you to run installed modules as scripts with the `-m` option followed by the module namespace (e.g. `spacewalks.analyse`).
+Since `uv run` can be used in place of the `python` command, we can run the script with the following command:
+
+```bash
+uv run -m spacewalks.analyse
+```
 
 ### Building distributions
 
