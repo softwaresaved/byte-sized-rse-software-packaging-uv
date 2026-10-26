@@ -438,36 +438,37 @@ uv run eva_data_analysis.py
 
 #### Runtime and development dependencies
 
-Tools like `uv` understand that there are two different types of dependencies: runtime dependencies and development dependencies. 
-Runtime dependencies need to be installed for our code to run, like `matplotlib` for our code. 
-Development dependencies are an essential part of the development process for a project, but are not required to run it. 
-For example - `mkdocs` used to build the documentation for our software project or `pytest` to run tests.
+Tools like `uv` understand that there are two different types of dependencies: runtime dependencies and development dependencies.
+Runtime dependencies need to be installed for our code to run, like `matplotlib` for our code.
+Development dependencies are an essential part of the development process for a project, but are not required to run it.
+For example, `mkdocs` used to build the documentation for our software project or `pytest` to run tests.
 
 With `uv add matplotlib` and `uv add -r requirements.txt` commands, `uv` will add all packages to the list of runtime dependencies in `pyproject.toml` (regardless if they are runtime or development dependencies - there is not way to tell the difference with `requirements.txt`).
 
-To add `mkdocs` and `pytest` as development dependencies, the --group option can be used:
+To add `mkdocs` and `pytest` as development dependencies, the `--group` option can be used:
 
 ```bash
 $ uv add --group dev mkdocs pytest
 ```
 
-This will add a new section to the `pyproject.toml` file for development dependencies:
+This will add a new section to the `pyproject.toml` file for development dependencies, e.g.
 
 ```text
 [dependency-groups]
 dev = [
-"mkdocs>=1.6.1",
-"pytest>=TODO"
+    "mkdocs>=1.6.1",
+    "pytest>=9.1.1",
 ]
 ```
 
-Now when someone installs our package on their machine, only the runtime dependencies will be installed since development dependencies are not needed to run the code.
+`dev` is treated as a special kind of group by uv.
+By default, uv will install all `dev` group dependencies alongside main package dependencies when you run uv commands.
+As a special group, the option `--dev` can be used instead of `--group dev`.
 
-To install the development dependencies, one needs to clone our repository from GitHub and then specify the dev extra when installing:
+The `--group` option can be used to define other non-runtime dependency groups.
+For example, you might have an `benchmark` group which contains dependencies required to run benchmarks for your software.
 
-```
-$ python3 -m pip install .[dev]
-```
+When someone else installs our package on their machine using `pip`, only the runtime dependencies will be installed since development dependencies are not needed to run the code.
 
 At this point, you can delete `requirements.txt` and carry on running your Python scripts or Python tools with `uv`.
 Recall that if you are using `uv` to run Python commands - you do not have to activate the environment explicitly.
