@@ -594,7 +594,19 @@ $ python3 -m pip install spacewalks_example-0.1.0-py3-none-any.whl
 And then they could import our package in their own Python environment:
 
 ```python
-import spacewalks_example
+import spacewalks
+```
+
+They can also run the spacewalks command:
+
+```bash
+spacewalks
+```
+
+Or the analysis module with:
+
+```bash
+python -m spacewalks.analyse
 ```
 
 ::: callout
