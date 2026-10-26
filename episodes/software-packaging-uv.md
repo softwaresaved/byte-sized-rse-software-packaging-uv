@@ -294,7 +294,6 @@ This should output:
 Hello from spacewalks!
 ```
 
-::: callout
 ### Project scripts
 
 By default, uv creates an entry in the `project.scripts` section of `pyproject.toml`.
@@ -304,7 +303,7 @@ By default, uv creates an entry in the `project.scripts` section of `pyproject.t
 spacewalks = "spacewalks:main"
 ```
 
-This defines a command which gets installed in your environment when you install your package.
+This defines a command which gets installed in your environment when you install the package.
 Here, the command is `spacewalks` which invokes the `main` function in the `spacewalks` package namespace.
 Instead of launching the Python console, importing `main` from `spacewalks`, and running it, we can execute it with the following shell command:
 
@@ -317,7 +316,6 @@ This should output:
 ```text
 Hello from spacewalks!
 ```
-:::
 
 ### Running commands
 
