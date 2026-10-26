@@ -237,7 +237,7 @@ A [good guide on writing `pyproject.toml` files](https://packaging.python.org/en
 
 :::
 
-## Installing the package
+## Installing the package locally
 
 A common convention is to keep Python code in a directory called `src` under the project root directory.
 The directory `spacewalks` represents the top-level package.
@@ -562,7 +562,7 @@ from spacewalks.analyse import (
 
 <!-- TODO: add challenge or callout to include the CLI as the main project script -->
 
-## Building distributions
+## Building and distributing the package
 
 `uv build` command can be used to build source distributions and binary distributions (wheels) for your project.
 
