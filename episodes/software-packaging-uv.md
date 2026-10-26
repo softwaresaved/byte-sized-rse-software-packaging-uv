@@ -237,7 +237,7 @@ A [good guide on writing `pyproject.toml` files](https://packaging.python.org/en
 
 :::
 
-### Importing code from our package
+### Installing our package
 
 A common convention is to keep Python code in a directory called `src` under the project root directory.
 The directory `spacewalks` represents the top-level package.
