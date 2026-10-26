@@ -245,14 +245,14 @@ The presence of an `__init__.py` file within `spacewalks` registers that directo
 The file `__init__.py` is run when the package is imported with `import spacewalks`.
 
 Let us see this in action.
-Launch a Python interpreter within the virtual environment.
+Launch a Python console within the virtual environment.
 
 ```bash
 # Activate virtual environment
 source .venv/bin/activate     # Linux and macOS
 source .venv/Scripts/activate # Windows
 
-# Launch Python interpreter
+# Launch Python console
 python
 ```
 
