@@ -571,8 +571,8 @@ Once we have made sure our project is in the right structure, we can go ahead an
 ```bash
 $ uv build
 $ ls dist/
-spacewalks_example-0.1.0-py3-none-any.whl	
-spacewalks_example-0.1.0.tar.gz
+spacewalks-0.1.0-py3-none-any.whl	
+spacewalks-0.1.0.tar.gz
 ```
 
 The one we care most about is the `.whl` or wheel file. 
@@ -584,7 +584,7 @@ While we could choose to use underscores in a distributable package name, we can
 Now if we gave this wheel file to someone else, they could install it using `uv` (or `pip` or another package installer).
 
 ```bash
-$ python3 -m pip install spacewalks_example-0.1.0-py3-none-any.whl
+$ python3 -m pip install spacewalks-0.1.0-py3-none-any.whl
 ```
 
 And then they could import our package in their own Python environment:
