@@ -130,7 +130,7 @@ Invoking Python `setup.py` script directly is now deprecated, but `setup.py` is 
 
 Alternatively, if you run:
 
-shell
+```bash
 $ pip install .
 ``` 
 

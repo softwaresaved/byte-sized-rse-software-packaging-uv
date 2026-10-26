@@ -608,7 +608,7 @@ python -m spacewalks.analyse
 ::: callout
 ### Managing the package version
 
-After we have been working on our code for a while and want to publish an update, we just need to update the version number in the pyproject.toml file (using SemVer perhaps), then use `uv` to build and publish the new version.
+After we have been working on our code for a while and want to publish an update, we just need to update the version number in the `pyproject.toml` file (using SemVer perhaps), then use `uv` to build and publish the new version.
 
 `uv` can help easily increment the version number following Semantic Versioning conventions. For example, to increment the minor version number, we can do:
 
