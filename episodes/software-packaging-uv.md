@@ -261,12 +261,7 @@ $ python
 Within the Python console, import the `main` function from `spacewalks`.
 
 ```python
-from spacewalks import main
-```
-
-This should fail with the following output:
-
-```output
+>>> from spacewalks import main
 Traceback (most recent call last):
   File "<python-input-0>", line 1, in <module>
     from spacewalks import main
@@ -285,14 +280,8 @@ Now relaunch the Python console.
 Within the Python console, import the `main` function from `spacewalks` and execute it.
 
 ```python
-from spacewalks import main
-main()
-exit()
-```
-
-This should output:
-
-```output
+>>> from spacewalks import main
+>>> main()
 Hello from spacewalks!
 ```
 
@@ -501,9 +490,19 @@ $ uv run python
 In the Python console, run:
 
 ```python
-from spacewalks.analyse import read_json_to_dataframe
-help(read_json_to_dataframe)  # Displays help message (quit window with 'q')
-exit()
+>>> from spacewalks.analyse import read_json_to_dataframe
+>>> help(read_json_to_dataframe)
+Help on function read_json_to_dataframe in module spacewalks.analyse:
+
+read_json_to_dataframe(input_file)
+    Read the data from a JSON file into a Pandas dataframe.
+    Clean the data by removing any rows where the 'duration' value is missing.
+
+    Args:
+        input_file (file or str): The file object or path to the JSON file.
+
+    Returns:
+         eva_df (pd.DataFrame): The cleaned data as a dataframe structure
 ```
 
 Python allows you to run installed modules as scripts with the `-m` option followed by the module namespace (e.g. `spacewalks.analyse`).
