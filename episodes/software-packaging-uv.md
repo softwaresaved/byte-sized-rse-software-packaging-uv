@@ -468,6 +468,12 @@ As a special group, the option `--dev` can be used instead of `--group dev`.
 The `--group` option can be used to define other non-runtime dependency groups.
 For example, you might have an `benchmark` group which contains dependencies required to run benchmarks for your software.
 
+Let's run the tests for our project, replacing `python` with `uv run`:
+
+```bash
+uv run -m pytest tests/
+```
+
 When someone else installs our package on their machine using `pip`, only the runtime dependencies will be installed since development dependencies are not needed to run the code.
 
 At this point, you can delete `requirements.txt` and carry on running your Python scripts or Python tools with `uv`.
