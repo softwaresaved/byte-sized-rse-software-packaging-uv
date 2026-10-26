@@ -485,6 +485,7 @@ If you prefer to use Python directly, you will have to activate your environment
 Python files within `spacewalks` are called submodules of the package.
 For example, a submodule called `voskhod.py` (named after the space mission where Alexei Leonov took the world's first spacewalks) could be imported using the namespace `spacewalks.voskhod`.
 
+Currently, our `eva_data_analysis.py` code is not a part of our `spacewalks` package.
 We can include our `eva_data_analysis.py` code as a module in our new `spacewalks` package.
 Move the file to the `src/spacewalks` directory give it a more concise name.
 
@@ -513,6 +514,57 @@ Since `uv run` can be used in place of the `python` command, we can run the scri
 ```bash
 uv run -m spacewalks.analyse
 ```
+
+However, if we now try to run the tests:
+
+```bash
+uv run -m pytest tests/
+```
+
+They fail with the following output:
+
+```text
+================================================ ERRORS ================================================
+_____________________________ ERROR collecting tests/test_eva_analysis.py ______________________________
+ImportError while importing test module '/Users/a.j.lyttle@bham.ac.uk/Repos/github.com/alexlyttle/spacewalks/tests/test_eva_analysis.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/opt/homebrew/Cellar/python@3.14/3.14.10/Frameworks/Python.framework/Versions/3.14/lib/python3.14/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_eva_analysis.py:2: in <module>
+    from eva_data_analysis import (
+E   ModuleNotFoundError: No module named 'eva_data_analysis'
+======================================= short test summary info ========================================
+ERROR tests/test_eva_analysis.py
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+=========================================== 1 error in 0.10s ===========================================
+```
+
+This is because the module they were importing from has moved.
+
+:::: challenge
+### Update tests
+
+Go to `tests/test_eva_analysis.py` and update the import statements to import from our new `analysis` module.
+Confirm that the tests run after making your changes.
+
+::: solution
+
+The top of `tests/test_eva_analysis.py` should now look like this:
+
+```python
+import pytest
+from spacewalks.analyse import (
+    text_to_duration,
+    calculate_crew_size
+)
+```
+
+:::
+::::
+
+<!-- TODO: add challenge or callout to include the CLI as the main project script -->
 
 ### Building distributions
 
