@@ -245,15 +245,17 @@ The presence of an `__init__.py` file within `spacewalks` registers that directo
 The file `__init__.py` is run when the package is imported with `import spacewalks`.
 
 Let us see this in action.
-Launch a Python console within the virtual environment.
+First ensure the virtual environment is activated:
 
 ```bash
-# Activate virtual environment
-source .venv/bin/activate     # Linux and macOS
-source .venv/Scripts/activate # Windows
+$ source .venv/bin/activate     # Linux and macOS
+$ source .venv/Scripts/activate # Windows
+```
 
-# Launch Python console
-python
+Then, launch a Python console:
+
+```bash
+$ python
 ```
 
 Within the Python console, import the `main` function from `spacewalks`.
@@ -276,7 +278,7 @@ This failed because our package is not installed in our virtual environment.
 Exit the Python console with the `exit()` command and install our package with `pip`.
 
 ```bash
-pip install .
+$ pip install .
 ```
 
 Now relaunch the Python console.
@@ -308,7 +310,7 @@ Here, the command is `spacewalks` which invokes the `main` function in the `spac
 Instead of launching the Python console, importing `main` from `spacewalks`, and running it, we can execute it with the following shell command:
 
 ```bash
-spacewalks
+$ spacewalks
 ```
 
 This should output `Hello from spacewalks!` as before.
@@ -321,15 +323,15 @@ It precedes commands to be run with the latest build of your project and ensures
 To see this in action, first delete the virtual environment we made earlier.
 
 ```bash
-deactivate
-rm -r .venv
+$ deactivate
+$ rm -r .venv
 ```
 
 Now, if we try to run the `spacewalks` command we get an error saying the command is not found.
 Instead, run `spacewalks` using the `uv run` command:
 
 ```bash
-uv run spacewalks
+$ uv run spacewalks
 ```
 
 `uv` creates a virtual environment (`.venv/`) and a lock file (`uv.lock`) the first time you run any project command, i.e., `uv add`, `uv run`, `uv sync`, or `uv lock`.
@@ -361,7 +363,7 @@ The command `uv run` can also be used in place of the regular `python` command w
 For example, to run the data analysis script:
 
 ```bash
-uv run eva_data_analysis.py
+$ uv run eva_data_analysis.py
 ```
 
 However, we get the following import error:
@@ -429,7 +431,7 @@ This will also remove any other packages which Requests depended on, provided ot
 Now we should be able to run our script.
 
 ```bash
-uv run eva_data_analysis.py
+$ uv run eva_data_analysis.py
 ```
 
 ### Runtime and development dependencies
@@ -467,7 +469,7 @@ For example, you might have an `benchmark` group which contains dependencies req
 Let's run the tests for our project, replacing `python` with `uv run`:
 
 ```bash
-uv run -m pytest tests/
+$ uv run -m pytest tests/
 ```
 
 When someone else installs our package on their machine using `pip`, only the runtime dependencies will be installed since development dependencies are not needed to run the code.
@@ -486,14 +488,14 @@ We can include our `eva_data_analysis.py` code as a module in our new `spacewalk
 Move the file to the `src/spacewalks` directory give it a more concise name.
 
 ```bash
-mv eva_data_analysis.py src/spacewalks/analyse.py
+$ mv eva_data_analysis.py src/spacewalks/analyse.py
 ```
 
 Now, we can import functions from the analysis code.
 Launch the Python console and import the `read_json_to_dataframe` function from the `analyse` module.
 
 ```bash
-uv run python
+$ uv run python
 ```
 
 In the Python console, run:
@@ -508,13 +510,13 @@ Python allows you to run installed modules as scripts with the `-m` option follo
 Since `uv run` can be used in place of the `python` command, we can run the script with the following command:
 
 ```bash
-uv run -m spacewalks.analyse
+$ uv run -m spacewalks.analyse
 ```
 
 However, if we now try to run the tests:
 
 ```bash
-uv run -m pytest tests/
+$ uv run -m pytest tests/
 ```
 
 They fail with the following output:
@@ -571,7 +573,7 @@ Once we have made sure our project is in the right structure, we can go ahead an
 ```bash
 $ uv build
 $ ls dist/
-spacewalks-0.1.0-py3-none-any.whl	
+spacewalks-0.1.0-py3-none-any.whl
 spacewalks-0.1.0.tar.gz
 ```
 
@@ -596,13 +598,13 @@ import spacewalks
 They can also run the spacewalks command:
 
 ```bash
-spacewalks
+$ spacewalks
 ```
 
 Or the analysis module with:
 
 ```bash
-python -m spacewalks.analyse
+$ python -m spacewalks.analyse
 ```
 
 ::: callout
