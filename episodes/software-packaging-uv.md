@@ -174,7 +174,7 @@ This file tells `uv` which Python version to use when creating the project's vir
 
 `uv` has also created a starter `pyproject.toml` file to store the metadata about your project.
 
-```text
+```toml
 [project]
 name = "spacewalks"
 version = "0.1.0"
@@ -204,14 +204,14 @@ If you are building a package or library to be published, the [build-system] tab
 
 For example:
 
-```text
+```toml
 [build-system]
 requires = ["uv_build>=0.11.31,<0.12"]
 build-backend = "uv_build"
 ```
 
 Or:
-```text
+```toml
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
@@ -453,7 +453,7 @@ $ uv add --group dev mkdocs pytest
 
 This will add a new section to the `pyproject.toml` file for development dependencies, e.g.
 
-```text
+```toml
 [dependency-groups]
 dev = [
     "mkdocs>=1.6.1",
