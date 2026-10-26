@@ -81,7 +81,7 @@ Check out [the `uv` guides](https://docs.astral.sh/uv/guides/) covering the full
 
 :::
 
-## Packaging code with `uv`
+## Initialising the package with `uv`
 
 Let's go to our example spacewalks code.
 
@@ -237,7 +237,7 @@ A [good guide on writing `pyproject.toml` files](https://packaging.python.org/en
 
 :::
 
-### Installing our package
+## Installing the package
 
 A common convention is to keep Python code in a directory called `src` under the project root directory.
 The directory `spacewalks` represents the top-level package.
@@ -313,7 +313,7 @@ spacewalks
 
 This should output `Hello from spacewalks!` as before.
 
-### Running commands
+## Running commands with `uv`
 
 The `uv run` command can be used to run Python scripts or Python commands in your project environment.
 It precedes commands to be run with the latest build of your project and ensures the virtual environment contains the correct versions of project dependencies.
@@ -388,7 +388,7 @@ $ spacewalks
 Note: if you want to run scripts and commands using the Python command (i.e. without `uv run`) - the virtual environment must be active.
 :::
 
-### Managing dependencies
+## Managing dependencies with `uv`
 
 Next, we need to install dependencies for our project, which are recorded in `requirements.txt` file.
 By looking at the code in `eva_data_analysis.py` Python script, we can tell we require `matplotlib` and `pandas` packages.
@@ -432,7 +432,7 @@ Now we should be able to run our script.
 uv run eva_data_analysis.py
 ```
 
-#### Runtime and development dependencies
+### Runtime and development dependencies
 
 Tools like `uv` understand that there are two different types of dependencies: runtime dependencies and development dependencies.
 Runtime dependencies need to be installed for our code to run, like `matplotlib` for our code.
@@ -476,7 +476,7 @@ At this point, you can delete `requirements.txt` and carry on running your Pytho
 Recall that if you are using `uv` to run Python commands - you do not have to activate the environment explicitly.
 If you prefer to use Python directly, you will have to activate your environment first but switch to `uv` for managing it from whatever tools you used before.
 
-### Adding modules to our package
+## Adding modules to our package
 
 Python files within `spacewalks` are called submodules of the package.
 For example, a submodule called `voskhod.py` (named after the space mission where Alexei Leonov took the world's first spacewalks) could be imported using the namespace `spacewalks.voskhod`.
@@ -562,7 +562,7 @@ from spacewalks.analyse import (
 
 <!-- TODO: add challenge or callout to include the CLI as the main project script -->
 
-### Building distributions
+## Building distributions
 
 `uv build` command can be used to build source distributions and binary distributions (wheels) for your project.
 
