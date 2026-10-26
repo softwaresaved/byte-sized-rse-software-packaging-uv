@@ -483,7 +483,7 @@ If you prefer to use Python directly, you will have to activate your environment
 ### Adding modules to our package
 
 Python files within `spacewalks` are called submodules of the package.
-For example, a submodule called `gemini.py` could be imported using the namespace `spacewalks.gemini`.
+For example, a submodule called `voskhod.py` (named after the space mission where Alexei Leonov took the world's first spacewalks) could be imported using the namespace `spacewalks.voskhod`.
 
 We can include our `eva_data_analysis.py` code as a module in our new `spacewalks` package.
 Move the file to the `src/spacewalks` directory give it a more concise name.
