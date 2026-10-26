@@ -296,7 +296,7 @@ Hello from spacewalks!
 
 ### Project scripts
 
-By default, uv creates an entry in the `project.scripts` section of `pyproject.toml`.
+By default, `uv` creates an entry in the `project.scripts` section of `pyproject.toml`.
 
 ```toml
 [project.scripts]
@@ -332,7 +332,7 @@ Instead, run `spacewalks` using the `uv run` command:
 uv run spacewalks
 ```
 
-Uv creates a virtual environment (`.venv/`) and a lock file (`uv.lock`) the first time you run any project command, i.e., `uv add`, `uv run`, `uv sync`, or `uv lock`.
+`uv` creates a virtual environment (`.venv/`) and a lock file (`uv.lock`) the first time you run any project command, i.e., `uv add`, `uv run`, `uv sync`, or `uv lock`.
 The lock file contains details of all packages and their versions required by the project.
 
 During every `uv run` invocation, `uv` will verify that the lock file is up-to-date with the `pyproject.toml`, and that the environment is up-to-date with the lock file, keeping your project in-sync without the need for manual intervention.
@@ -370,7 +370,7 @@ However, we get the following import error:
 ModuleNotFoundError: No module named 'matplotlib'
 ```
 
-This is because uv uses the `pyproject.toml` file to create the virtual environment and install our package.
+This is because `uv` uses the `pyproject.toml` file to create the virtual environment and install our package.
 This file should contain a list of dependencies required for our code to run.
 
 ::: callout
@@ -457,8 +457,8 @@ dev = [
 ]
 ```
 
-`dev` is treated as a special kind of group by uv.
-By default, uv will install all `dev` group dependencies alongside main package dependencies when you run uv commands.
+`dev` is treated as a special kind of group by `uv`.
+By default, `uv` will install all `dev` group dependencies alongside main package dependencies when you run `uv` commands.
 As a special group, the option `--dev` can be used instead of `--group dev`.
 
 The `--group` option can be used to define other non-runtime dependency groups.
@@ -610,7 +610,7 @@ python -m spacewalks.analyse
 
 After we have been working on our code for a while and want to publish an update, we just need to update the version number in the pyproject.toml file (using SemVer perhaps), then use `uv` to build and publish the new version.
 
-uv can help easily increment the version number following Semantic Versioning conventions. For example, to increment the minor version number, we can do:
+`uv` can help easily increment the version number following Semantic Versioning conventions. For example, to increment the minor version number, we can do:
 
 ```bash
 $ uv version --bump minor
