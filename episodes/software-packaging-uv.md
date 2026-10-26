@@ -126,7 +126,7 @@ To migrate from the existing development workflow to use `uv`, you need to use `
 From within project root, do:
 
 ```bash
-$ uv init spacewalks
+$ uv init --name spacewalks
 ```
 
 ::: callout
@@ -141,6 +141,7 @@ $ uv init hello-world
 $ cd hello-world
 ```
 
+This creates a directory called `hello-world` and a project with the same name.
 `uv` will create the following files and directories as a basic scaffolding for your Python project:
 
 ```text
