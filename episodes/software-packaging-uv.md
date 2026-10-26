@@ -294,6 +294,31 @@ This should output:
 Hello from spacewalks!
 ```
 
+::: callout
+### Project scripts
+
+By default, uv creates an entry in the `project.scripts` section of `pyproject.toml`.
+
+```toml
+[project.scripts]
+spacewalks = "spacewalks:main"
+```
+
+This defines a command which gets installed in your environment when you install your package.
+Here, the command is `spacewalks` which invokes the `main` function in the `spacewalks` package namespace.
+Instead of launching the Python console, importing `main` from `spacewalks`, and running it, we can execute it with the following shell command:
+
+```bash
+spacewalks
+```
+
+This should output:
+
+```text
+Hello from spacewalks!
+```
+:::
+
 ### Running commands
 
 The `uv run` command can be used to run Python scripts or Python commands in your project environment.
