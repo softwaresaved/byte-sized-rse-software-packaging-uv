@@ -60,17 +60,24 @@ A few things to note about the software project:
 
 Before we can run the code, we need to create and activate a virtual environment called ".venv" from the root of the software project directory:
 
+::: group-tab
+### macOS or Linux
+
 ```bash
 $ python3 -m venv .venv
-$ source .venv/bin/activate # Mac or Linux
+$ source .venv/bin/activate
 (.venv) $
 ```
 
+### Windows
+
 ```bash
 $ python -m venv .venv
-$ source .venv\Scripts\activate # Windows
+$ source .venv/Scripts/activate
 (.venv) $
 ```
+
+:::
 
 The active virtual environment is indicated in the command line prompt between the round brackets: "(.venv)".
 

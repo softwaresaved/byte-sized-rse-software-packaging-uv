@@ -248,10 +248,20 @@ The file `__init__.py` is run when the package is imported with `import spacewal
 Let us see this in action.
 First ensure the virtual environment is activated:
 
+::: group-tab
+### macOS or Linux
+
 ```bash
-$ source .venv/bin/activate     # Linux and macOS
-$ source .venv/Scripts/activate # Windows
+$ source .venv/bin/activate
 ```
+
+### Windows
+
+```bash
+$ source .venv/Scripts/activate
+```
+
+:::
 
 Then, launch a Python console:
 
@@ -364,20 +374,32 @@ ModuleNotFoundError: No module named 'matplotlib'
 This is because `uv` uses the `pyproject.toml` file to create the virtual environment and install our package.
 This file should contain a list of dependencies required for our code to run.
 
-::: callout
+:::: callout
 ### Manually updating the virtual environment
 
 Alternatively, you can use `uv sync` to manually update `.venv` then activate it before executing a Python command or running your Python script:
 
+::: group-tab
+### macOS or Linux
+
 ```bash
 $ uv sync
-$ source .venv/bin/activate # macOS or Linux
-$ source .venv/Scripts/activate # Windows
+$ source .venv/bin/activate
 $ spacewalks
 ```
 
-Note: if you want to run scripts and commands using the Python command (i.e. without `uv run`) - the virtual environment must be active.
+### Windows
+
+```bash
+$ uv sync
+$ source .venv/Scripts/activate
+$ spacewalks
+```
+
 :::
+
+Note: if you want to run scripts and commands using the Python command (i.e. without `uv run`) - the virtual environment must be active.
+::::
 
 ## Managing dependencies with `uv`
 
