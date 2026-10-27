@@ -12,7 +12,7 @@ title: Setup
 - Python version 3.8 or above installed (with `pip`and `venv` tools)
 - Understanding of Python syntax to be able to read and follow code examples
 - Understanding of managing Python dependencies and virtual environments (e.g. using `pip` and `venv` tools)
-- `uv` Python package and dependency management tool
+- `uv` Python package and dependency management tool installed
 - [GitHub](https://github.com) account
 - [Example code](https://github.com/softwaresaved/spacewalks_example) copied into your GitHub account
 
