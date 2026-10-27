@@ -81,7 +81,7 @@ Check out [the `uv` guides](https://docs.astral.sh/uv/guides/) covering the full
 
 :::
 
-## Packaging code with `uv`
+## Initialising a package with `uv`
 
 Let's go to our example spacewalks code.
 
@@ -126,7 +126,7 @@ To migrate from the existing development workflow to use `uv`, you need to use `
 From within project root, do:
 
 ```bash
-$ uv init
+$ uv init --name spacewalks
 ```
 
 ::: callout
@@ -141,6 +141,7 @@ $ uv init hello-world
 $ cd hello-world
 ```
 
+This creates a directory called `hello-world` and a project with the same name.
 `uv` will create the following files and directories as a basic scaffolding for your Python project:
 
 ```text
@@ -174,7 +175,7 @@ This file tells `uv` which Python version to use when creating the project's vir
 
 `uv` has also created a starter `pyproject.toml` file to store the metadata about your project.
 
-```text
+```toml
 [project]
 name = "spacewalks"
 version = "0.1.0"
@@ -204,14 +205,14 @@ If you are building a package or library to be published, the [build-system] tab
 
 For example:
 
-```text
+```toml
 [build-system]
 requires = ["uv_build>=0.11.31,<0.12"]
 build-backend = "uv_build"
 ```
 
 Or:
-```text
+```toml
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
@@ -237,29 +238,96 @@ A [good guide on writing `pyproject.toml` files](https://packaging.python.org/en
 
 :::
 
-### Managing dependencies
+## Installing a package locally
 
-Next, we need to install dependencies for our project, which are recorded in `requirements.txt` file.
-By looking at the code in `eva_data_analysis.py` Python script, we can tell we require `matplotlib` and `pandas` packages.
+A common convention is to keep Python code in a directory called `src` under the project root directory.
+The directory `spacewalks` represents the top-level package.
+The presence of an `__init__.py` file within `spacewalks` registers that directory as a package.
+The file `__init__.py` is run when the package is imported with `import spacewalks`.
 
-We can use the `uv add` command to install them:
-
-```bash
-$ uv add matplotlib
-$ uv add pandas
-```
-
-Alternatively, we can use the `uv add` command with the `-r` flag to add all dependencies from the `requirements.txt` file in a single go.
+Let us see this in action.
+First ensure the virtual environment is activated:
 
 ```bash
-$ uv add -r requirements.txt
+$ source .venv/bin/activate     # Linux and macOS
+$ source .venv/Scripts/activate # Windows
 ```
 
-You may notice that after running the `uv add` command - we now have a virtual environment in `.venv` directory (as well as the `uv.lock` file).
-Note that if you have an existing virtual environment in `.venv` directory, `uv` will continue to use that by default to record changes to it.
-If you do not have an existing environment, you can create it with the `uv venv` command - by default it will end up in `.venv` directory in the project root along with the `uv.lock` file.
+Then, launch a Python console:
 
-`uv` creates a virtual environment and the `uv.lock` file the first time you run any project command, i.e., `uv add`, `uv run`, `uv sync`, or `uv lock` (so you do not have to do it explicitly with `uv venv`).
+```bash
+$ python
+```
+
+Within the Python console, import the `main` function from `spacewalks`.
+
+```python
+>>> from spacewalks import main
+Traceback (most recent call last):
+  File "<python-input-0>", line 1, in <module>
+    from spacewalks import main
+ModuleNotFoundError: No module named 'spacewalks'
+```
+
+This failed because our package is not installed in our virtual environment.
+
+Exit the Python console with the `exit()` command and install our package with `pip`.
+
+```bash
+$ pip install .
+```
+
+Now relaunch the Python console.
+Within the Python console, import the `main` function from `spacewalks` and execute it.
+
+```python
+>>> from spacewalks import main
+>>> main()
+Hello from spacewalks!
+```
+
+### Project scripts
+
+By default, `uv` creates an entry in the `project.scripts` section of `pyproject.toml`.
+
+```toml
+[project.scripts]
+spacewalks = "spacewalks:main"
+```
+
+This defines a command which gets installed in your environment when you install the package.
+Here, the command is `spacewalks` which invokes the `main` function in the `spacewalks` package namespace.
+Instead of launching the Python console, importing `main` from `spacewalks`, and running it, we can execute it with the following shell command:
+
+```bash
+$ spacewalks
+Hello from spacewalks!
+```
+
+## Running commands with `uv`
+
+The `uv run` command can be used to run Python scripts or Python commands in your project environment.
+It precedes commands to be run with the latest build of your project and ensures the virtual environment contains the correct versions of project dependencies.
+
+To see this in action, first delete the virtual environment we made earlier.
+
+```bash
+$ deactivate
+$ rm -r .venv
+```
+
+Now, if we try to run the `spacewalks` command we get an error saying the command is not found.
+Instead, run `spacewalks` using the `uv run` command:
+
+```bash
+$ uv run spacewalks
+```
+
+`uv` creates a virtual environment (`.venv/`) and a lock file (`uv.lock`) the first time you run any project command, i.e., `uv add`, `uv run`, `uv sync`, or `uv lock`.
+The lock file contains details of all packages and their versions required by the project.
+
+During every `uv run` invocation, `uv` will verify that the lock file is up-to-date with the `pyproject.toml`, and that the environment is up-to-date with the lock file, keeping your project in-sync without the need for manual intervention.
+`uv run` guarantees that your command is run in an environment with all required dependencies at their locked versions.
 
 The project structure now looks like the following - with new parts added that all work together and allow `uv` to manage your project.
 
@@ -267,15 +335,65 @@ The project structure now looks like the following - with new parts added that a
 .
 ├── .git/
 ├── .venv/
-│   ├── bin/
-│   ├── lib/
-│   └── pyvenv.cfg
+├── data/
+├── docs/
+├── results/
+├── site/
+├── src/
 ├── .gitignore
 ├── .python-version
 ├── README.md
-├── main.py
+├── eva_data_analysis.py
 ├── pyproject.toml
 └── uv.lock
+```
+
+The command `uv run` can also be used in place of the regular `python` command when running scripts.
+For example, to run the data analysis script:
+
+```bash
+$ uv run eva_data_analysis.py
+```
+
+However, we get the following import error:
+
+```output
+ModuleNotFoundError: No module named 'matplotlib'
+```
+
+This is because `uv` uses the `pyproject.toml` file to create the virtual environment and install our package.
+This file should contain a list of dependencies required for our code to run.
+
+::: callout
+### Manually updating the virtual environment
+
+Alternatively, you can use `uv sync` to manually update `.venv` then activate it before executing a Python command or running your Python script:
+
+```bash
+$ uv sync
+$ source .venv/bin/activate # macOS or Linux
+$ source .venv/Scripts/activate # Windows
+$ spacewalks
+```
+
+Note: if you want to run scripts and commands using the Python command (i.e. without `uv run`) - the virtual environment must be active.
+:::
+
+## Managing dependencies with `uv`
+
+Next, we need to install dependencies for our project, which are recorded in `requirements.txt` file.
+By looking at the code in `eva_data_analysis.py` Python script, we can tell we require `matplotlib` and `pandas` packages.
+
+We can use the `uv add` command to install them:
+
+```bash
+$ uv add matplotlib pandas
+```
+
+Alternatively, we can use the `uv add` command with the `-r` flag to add all dependencies from the `requirements.txt` file in a single go.
+
+```bash
+$ uv add -r requirements.txt
 ```
 
 You can also specify version constraints or alternative sources for packages with the `uv add` command.
@@ -299,71 +417,153 @@ $ uv remove requests
 
 This will also remove any other packages which Requests depended on, provided other project dependencies do not need them.
 
-### Running commands
+Now we should be able to run our script.
 
-`uv run` can be used to run Python scripts or Python commands in your project environment.
-
-```text
+```bash
 $ uv run eva_data_analysis.py
 ```
 
-Prior to every `uv run` invocation, `uv` will verify that the lock file is up-to-date with the `pyproject.toml`, and that the environment is up-to-date with the lock file, keeping your project in-sync without the need for manual intervention. 
-`uv run` guarantees that your command is run in an environment with all required dependencies at their locked versions.
+### Runtime and development dependencies
 
-Alternatively, you can use `uv sync` to manually update the environment (recorded in `.venv` folder) then activate it before executing a Python command or running your Python script:
-
-```bash
-$ uv sync
-$ source .venv/bin/activate # macOS or Linux
-$ python3 eva_data_analysis.py
-```
-
-```bash
-$ uv sync
-$ source .venv\Scripts\activate # Windows
-$ python eva_data_analysis.py
-```
-
-Note: if you want to run scripts and commands using the Python command (i.e. without `uv run`) - the virtual environment must be active.
-
-#### Runtime and development dependencies
-
-Tools like `uv` understand that there are two different types of dependencies: runtime dependencies and development dependencies. 
-Runtime dependencies need to be installed for our code to run, like `matplotlib` for our code. 
-Development dependencies are an essential part of the development process for a project, but are not required to run it. 
-For example - `mkdocs` used to build the documentation for our software project or `pytest` to run tests.
+Tools like `uv` understand that there are two different types of dependencies: runtime dependencies and development dependencies.
+Runtime dependencies need to be installed for our code to run, like `matplotlib` for our code.
+Development dependencies are an essential part of the development process for a project, but are not required to run it.
+For example, `mkdocs` used to build the documentation for our software project or `pytest` to run tests.
 
 With `uv add matplotlib` and `uv add -r requirements.txt` commands, `uv` will add all packages to the list of runtime dependencies in `pyproject.toml` (regardless if they are runtime or development dependencies - there is not way to tell the difference with `requirements.txt`).
 
-To add `mkdocs` and `pytest` as development dependencies, the --group option can be used:
+To add `mkdocs` and `pytest` as development dependencies, the `--group` option can be used:
 
 ```bash
 $ uv add --group dev mkdocs pytest
 ```
 
-This will add a new section to the `pyproject.toml` file for development dependencies:
+This will add a new section to the `pyproject.toml` file for development dependencies, e.g.
 
-```text
+```toml
 [dependency-groups]
 dev = [
-"mkdocs>=1.6.1",
-"pytest>=TODO"
+    "mkdocs>=1.6.1",
+    "pytest>=9.1.1",
 ]
 ```
 
-Now when someone installs our package on their machine, only the runtime dependencies will be installed since development dependencies are not needed to run the code.
+`dev` is treated as a special kind of group by `uv`.
+By default, `uv` will install all `dev` group dependencies alongside main package dependencies when you run `uv` commands.
+As a special group, the option `--dev` can be used instead of `--group dev`.
 
-To install the development dependencies, one needs to clone our repository from GitHub and then specify the dev extra when installing:
+The `--group` option can be used to define other non-runtime dependency groups.
+For example, you might have an `benchmark` group which contains dependencies required to run benchmarks for your software.
 
+Let's run the tests for our project, replacing `python` with `uv run`:
+
+```bash
+$ uv run -m pytest tests/
 ```
-$ python3 -m pip install .[dev]
-```
+
+When someone else installs our package on their machine using `pip`, only the runtime dependencies will be installed since development dependencies are not needed to run the code.
 
 At this point, you can delete `requirements.txt` and carry on running your Python scripts or Python tools with `uv`.
 Recall that if you are using `uv` to run Python commands - you do not have to activate the environment explicitly.
 If you prefer to use Python directly, you will have to activate your environment first but switch to `uv` for managing it from whatever tools you used before.
 
-### Building distributions
+## Adding modules to a package
+
+Python files within `spacewalks` are called submodules of the package.
+For example, a submodule called `voskhod.py` (named after the space mission where Alexei Leonov took the world's first spacewalks) could be imported using the namespace `spacewalks.voskhod`.
+
+Currently, our `eva_data_analysis.py` code is not a part of our `spacewalks` package.
+We can include our `eva_data_analysis.py` code as a module in our new `spacewalks` package.
+Move the file to the `src/spacewalks` directory give it a more concise name.
+
+```bash
+$ mv eva_data_analysis.py src/spacewalks/analyse.py
+```
+
+Now, we can import functions from the analysis code.
+Launch the Python console and import the `read_json_to_dataframe` function from the `analyse` module.
+
+```bash
+$ uv run python
+```
+
+In the Python console, run:
+
+```python
+>>> from spacewalks.analyse import read_json_to_dataframe
+>>> help(read_json_to_dataframe)
+Help on function read_json_to_dataframe in module spacewalks.analyse:
+
+read_json_to_dataframe(input_file)
+    Read the data from a JSON file into a Pandas dataframe.
+    Clean the data by removing any rows where the 'duration' value is missing.
+
+    Args:
+        input_file (file or str): The file object or path to the JSON file.
+
+    Returns:
+         eva_df (pd.DataFrame): The cleaned data as a dataframe structure
+```
+
+Python allows you to run installed modules as scripts with the `-m` option followed by the module namespace (e.g. `spacewalks.analyse`).
+Since `uv run` can be used in place of the `python` command, we can run the script with the following command:
+
+```bash
+$ uv run -m spacewalks.analyse
+```
+
+However, if we now try to run the tests:
+
+```bash
+$ uv run -m pytest tests/
+```
+
+They fail with the following output:
+
+```output
+================================================ ERRORS ================================================
+_____________________________ ERROR collecting tests/test_eva_analysis.py ______________________________
+ImportError while importing test module '/Users/a.j.lyttle@bham.ac.uk/Repos/github.com/alexlyttle/spacewalks/tests/test_eva_analysis.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/opt/homebrew/Cellar/python@3.14/3.14.10/Frameworks/Python.framework/Versions/3.14/lib/python3.14/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_eva_analysis.py:2: in <module>
+    from eva_data_analysis import (
+E   ModuleNotFoundError: No module named 'eva_data_analysis'
+======================================= short test summary info ========================================
+ERROR tests/test_eva_analysis.py
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+=========================================== 1 error in 0.10s ===========================================
+```
+
+This is because the module they were importing from has moved.
+
+:::: challenge
+### Update tests
+
+Go to `tests/test_eva_analysis.py` and update the import statements to import from our new `analysis` module.
+Confirm that the tests run after making your changes.
+
+::: solution
+
+The top of `tests/test_eva_analysis.py` should now look like this:
+
+```python
+import pytest
+from spacewalks.analyse import (
+    text_to_duration,
+    calculate_crew_size
+)
+```
+
+:::
+::::
+
+<!-- TODO: add challenge or callout to include the CLI as the main project script -->
+
+## Building and distributing a package
 
 `uv build` command can be used to build source distributions and binary distributions (wheels) for your project.
 
@@ -372,8 +572,8 @@ Once we have made sure our project is in the right structure, we can go ahead an
 ```bash
 $ uv build
 $ ls dist/
-spacewalks_example-0.1.0-py3-none-any.whl	
-spacewalks_example-0.1.0.tar.gz
+spacewalks-0.1.0-py3-none-any.whl
+spacewalks-0.1.0.tar.gz
 ```
 
 The one we care most about is the `.whl` or wheel file. 
@@ -385,14 +585,29 @@ While we could choose to use underscores in a distributable package name, we can
 Now if we gave this wheel file to someone else, they could install it using `uv` (or `pip` or another package installer).
 
 ```bash
-$ python3 -m pip install spacewalks_example-0.1.0-py3-none-any.whl
+$ python3 -m pip install spacewalks-0.1.0-py3-none-any.whl
 ```
 
 And then they could import our package in their own Python environment:
 
 ```python
-import spacewalks_example
+import spacewalks
 ```
+
+They can also run the spacewalks command:
+
+```bash
+$ spacewalks
+```
+
+Or the analysis module with:
+
+```bash
+$ python -m spacewalks.analyse
+```
+
+::: callout
+### Managing the package version
 
 After we have been working on our code for a while and want to publish an update, we just need to update the version number in the `pyproject.toml` file (using SemVer perhaps), then use `uv` to build and publish the new version.
 
@@ -403,6 +618,7 @@ $ uv version --bump minor
 ```
 
 Then the version number in `pyproject.toml` will be updated from 0.1.0 to 0.2.0.
+:::
 
 ## Summary
 
