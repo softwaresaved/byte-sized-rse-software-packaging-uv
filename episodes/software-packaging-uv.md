@@ -607,7 +607,7 @@ While we could choose to use underscores in a distributable package name, we can
 Now if we gave this wheel file to someone else, they could install it using `uv` (or `pip` or another package installer).
 
 ```bash
-$ python3 -m pip install spacewalks-0.1.0-py3-none-any.whl
+$ python -m pip install spacewalks-0.1.0-py3-none-any.whl
 ```
 
 And then they could import our package in their own Python environment:

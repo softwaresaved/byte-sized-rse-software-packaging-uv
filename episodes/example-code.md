@@ -84,15 +84,13 @@ The active virtual environment is indicated in the command line prompt between t
 Next, we will install the necessary dependencies from the `requirements.txt` file using `pip`:
 
 ```
-$ python3 -m pip install -r requirements.txt
+$ python -m pip install -r requirements.txt
 ```
-
-Note: some users may be able to just use the `python` command instead of `python3`.
 
 To ensure the code is working correctly, run the tests using Pytest.
 
 ```
-$ python3 -m pytest
+$ python -m pytest
 ```
 
 ## Running the Code
@@ -100,7 +98,7 @@ $ python3 -m pytest
 To run the analysis using the `eva_data_analysis.py` script from the command line terminal, do:
 
 ```
-$ python3 eva_data_analysis.py data/eva-data.json results/eva-data.csv
+$ python eva_data_analysis.py data/eva-data.json results/eva-data.csv
 ```
 
 If the code runs successfully, you should get the resulting plot in `results/cumulative_eva_graph.png`.
