@@ -284,7 +284,7 @@ This failed because our package is not installed in our virtual environment.
 Exit the Python console with the `exit()` command and install our package with `pip`.
 
 ```bash
-$ pip install .
+$ python -m pip install .
 ```
 
 Now relaunch the Python console.
@@ -607,7 +607,7 @@ While we could choose to use underscores in a distributable package name, we can
 Now if we gave this wheel file to someone else, they could install it using `uv` (or `pip` or another package installer).
 
 ```bash
-$ python3 -m pip install spacewalks-0.1.0-py3-none-any.whl
+$ python -m pip install spacewalks-0.1.0-py3-none-any.whl
 ```
 
 And then they could import our package in their own Python environment:
