@@ -202,7 +202,6 @@ The [build-system] table is not compulsory - you can use `pyproject.toml` just t
 If your project is an application (i.e. not designed to be published as a package), you do not need a [build-system] table.
 You can initialise a project not designed to be published as a package by running `uv init --no-package`.
 
-`uv` will install and manage your dependencies, but it will not attempt to build the project itself.
 If you are building a package or library to be published, the [build-system] table is required so `uv` knows which build backend to use (e.g. `uv_build`, `setuptools`, `hatch`).
 
 For example:
@@ -222,8 +221,9 @@ build-backend = "setuptools.build_meta"
 
 `uv` supports various build backends as specified by [PEP 517](https://peps.python.org/pep-0517/), but also provides a native build backend `uv_build` that integrates tightly with `uv` to improve performance and user experience.
 
-When you create a new project with `uv init`, the `uv_build` backend will be used by default if you issue the `uv build` command to create the source distribution and wheel for your project.
-`uv_build` backend has reasonable defaults and requires zero configuration for most users so you do not actually have to declare it in `pyptoject.toml` unless you want to change it to another build backend or configure it further.
+When you create a new project with `uv init`, the `uv_build` backend will be used by default.
+The `uv_build` backend has reasonable defaults and requires zero configuration for most users.
+You can use the `uv build` command to create the source distribution and wheel for your project.
 
 The [tool] table has tool-specific subtables, e.g., [tool.uv], [tool.hatch], content of which are defined by each tool. 
 You would need to consult the particular tool’s documentation to know what it can contain.
