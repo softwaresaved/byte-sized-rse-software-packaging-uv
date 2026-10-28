@@ -33,7 +33,10 @@ for installing Python in preparation for undertaking their Python lesson.
 
 ### uv
 
-`uv` Python package and dependency management tool can be obtained from [Astral](https://docs.astral.sh/uv/).
+You must install the Python package and dependency management tool `uv` (version 0.12 or higher) to follow along with the hands-on part of this lesson.
+`uv` can be obtained from [Astral](https://docs.astral.sh/uv/).
+
+You can check your version of `uv` with the `uv self version` command and update it, if needed, with `uv self update`.
 
 ### Code Editor
 
