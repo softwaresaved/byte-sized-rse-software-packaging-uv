@@ -284,7 +284,7 @@ This failed because our package is not installed in our virtual environment.
 Exit the Python console with the `exit()` command and install our package with `pip`.
 
 ```bash
-$ pip install .
+$ python -m pip install .
 ```
 
 Now relaunch the Python console.
