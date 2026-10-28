@@ -1187,7 +1187,7 @@ directory:</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-macOSorLinux" class="tab-pane show active" aria-labelledby="nav-tab-1-macOSorLinux" role="tabpanel">
+<div id="nav-tabpanel-1-macOSorLinux" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-macOSorLinux">
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1196,7 +1196,7 @@ directory:</p>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a><span class="kw">(</span><span class="ex">.venv</span><span class="kw">)</span> <span class="ex">$</span></span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-1-Windows" class="tab-pane" aria-labelledby="nav-tab-1-Windows" role="tabpanel">
+<div id="nav-tabpanel-1-Windows" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-Windows">
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1563,12 +1563,13 @@ tools like linters or formatters.</li>
 <p>The [build-system] table is not compulsory - you can use
 <code>pyproject.toml</code> just to store metadata and configuration. If
 your project is an application (i.e. not designed to be published as a
-package), you do not need a [build-system] table. <code>uv</code> will
-install and manage your dependencies, but it will not attempt to build
-the project itself. If you are building a package or library to be
-published, the [build-system] table is required so <code>uv</code> knows
-which build backend to use (e.g. <code>uv_build</code>,
-<code>setuptools</code>, <code>hatch</code>).</p>
+package), you do not need a [build-system] table. You can initialise a
+project not designed to be published as a package by running
+<code>uv init --no-package</code>.</p>
+<p>If you are building a package or library to be published, the
+[build-system] table is required so <code>uv</code> knows which build
+backend to use (e.g. <code>uv_build</code>, <code>setuptools</code>,
+<code>hatch</code>).</p>
 <p>For example:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">TOML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1589,17 +1590,11 @@ which build backend to use (e.g. <code>uv_build</code>,
 a native build backend <code>uv_build</code> that integrates tightly
 with <code>uv</code> to improve performance and user experience.</p>
 <p>When you create a new project with <code>uv init</code>, the
-<code>uv_build</code> backend will be used by default if you issue the
-<code>uv build</code> command to create the source distribution and
-wheel for your project. <code>uv_build</code> backend has reasonable
-defaults and requires zero configuration for most users so you do not
-actually have to declare it in <code>pyptoject.toml</code> unless you
-want to change it to another build backend or configure it further.</p>
-<p>You can initialise projects as packages even even you are just
-developing applications by running <code>uv init --package</code> - this
-will setup the project using a src-layout structure and setup
-<code>uv_build</code> as a build system in your
-<code>pyptoject.toml</code>.</p>
+<code>uv_build</code> backend will be used by default. The
+<code>uv_build</code> backend has reasonable defaults and requires zero
+configuration for most users. You can use the <code>uv build</code>
+command to create the source distribution and wheel for your
+project.</p>
 <p>The [tool] table has tool-specific subtables, e.g., [tool.uv],
 [tool.hatch], content of which are defined by each tool. You would need
 to consult the particular tool’s documentation to know what it can
@@ -1651,14 +1646,14 @@ activated:</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-macOSorLinux" class="tab-pane show active" aria-labelledby="nav-tab-1-macOSorLinux" role="tabpanel">
+<div id="nav-tabpanel-1-macOSorLinux" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-macOSorLinux">
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="ex">$</span> source .venv/bin/activate</span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-1-Windows" class="tab-pane" aria-labelledby="nav-tab-1-Windows" role="tabpanel">
+<div id="nav-tabpanel-1-Windows" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-Windows">
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1824,7 +1819,7 @@ running your Python script:</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-2" class="tab-content">
-<div id="nav-tabpanel-2-macOSorLinux" class="tab-pane show active" aria-labelledby="nav-tab-2-macOSorLinux" role="tabpanel">
+<div id="nav-tabpanel-2-macOSorLinux" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-2-macOSorLinux">
 <div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1833,7 +1828,7 @@ running your Python script:</p>
 <span id="cb23-3"><a href="#cb23-3" tabindex="-1" aria-label="code-block-23-3"></a><span class="ex">$</span> spacewalks</span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-2-Windows" class="tab-pane" aria-labelledby="nav-tab-2-Windows" role="tabpanel">
+<div id="nav-tabpanel-2-Windows" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-Windows">
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2064,7 +2059,7 @@ that the tests run after making your changes.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The top of <code>tests/test_eva_analysis.py</code> should now look
 like this:</p>
