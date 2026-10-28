@@ -199,7 +199,9 @@ Unlike the older `setup.py` approach, which contains executable Python code, `py
 - **\[tool]** table: configures settings for development tools like linters or formatters.
 
 The [build-system] table is not compulsory - you can use `pyproject.toml` just to store metadata and configuration. 
-If your project is an application (i.e. not designed to be published as a package), you do not need a [build-system] table. 
+If your project is an application (i.e. not designed to be published as a package), you do not need a [build-system] table.
+You can initialise a project not designed to be published as a package by running `uv init --no-package`.
+
 `uv` will install and manage your dependencies, but it will not attempt to build the project itself.
 If you are building a package or library to be published, the [build-system] table is required so `uv` knows which build backend to use (e.g. `uv_build`, `setuptools`, `hatch`).
 
