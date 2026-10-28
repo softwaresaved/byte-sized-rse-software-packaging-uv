@@ -1073,7 +1073,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-example-code"><p>Content from <a href="example-code.html">Example Code</a></p>
 <hr>
-<p>Last updated on 2026-10-27 |
+<p>Last updated on 2026-10-28 |
 
         <a href="https://github.com/carpentries-incubator/byte-sized-rse-software-documentation-mkdocs/edit/main/episodes/example-code.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1183,7 +1183,7 @@ directory:</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-macOSorLinux" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-macOSorLinux">
+<div id="nav-tabpanel-1-macOSorLinux" class="tab-pane show active" aria-labelledby="nav-tab-1-macOSorLinux" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1192,7 +1192,7 @@ directory:</p>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a><span class="kw">(</span><span class="ex">.venv</span><span class="kw">)</span> <span class="ex">$</span></span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-1-Windows" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-Windows">
+<div id="nav-tabpanel-1-Windows" class="tab-pane" aria-labelledby="nav-tab-1-Windows" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1207,18 +1207,16 @@ directory:</p>
 prompt between the round brackets: “(.venv)”.</p>
 <p>Next, we will install the necessary dependencies from the
 <code>requirements.txt</code> file using <code>pip</code>:</p>
-<pre><code>$ python3 -m pip install -r requirements.txt</code></pre>
-<p>Note: some users may be able to just use the <code>python</code>
-command instead of <code>python3</code>.</p>
+<pre><code>$ python -m pip install -r requirements.txt</code></pre>
 <p>To ensure the code is working correctly, run the tests using
 Pytest.</p>
-<pre><code>$ python3 -m pytest</code></pre>
+<pre><code>$ python -m pytest</code></pre>
 </section><section><h2 class="section-heading" id="running-the-code">Running the Code<a class="anchor" aria-label="anchor" href="#running-the-code"></a>
 </h2>
 <hr class="half-width">
 <p>To run the analysis using the <code>eva_data_analysis.py</code>
 script from the command line terminal, do:</p>
-<pre><code>$ python3 eva_data_analysis.py data/eva-data.json results/eva-data.csv</code></pre>
+<pre><code>$ python eva_data_analysis.py data/eva-data.json results/eva-data.csv</code></pre>
 <p>If the code runs successfully, you should get the resulting plot in
 <code>results/cumulative_eva_graph.png</code>.</p>
 <div id="keypoints1" class="callout keypoints">
@@ -1648,14 +1646,14 @@ activated:</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-macOSorLinux" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-macOSorLinux">
+<div id="nav-tabpanel-1-macOSorLinux" class="tab-pane show active" aria-labelledby="nav-tab-1-macOSorLinux" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="ex">$</span> source .venv/bin/activate</span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-1-Windows" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-Windows">
+<div id="nav-tabpanel-1-Windows" class="tab-pane" aria-labelledby="nav-tab-1-Windows" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1688,7 +1686,7 @@ install our package with <code>pip</code>.</p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="ex">$</span> pip install .</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="ex">$</span> python <span class="at">-m</span> pip install .</span></code></pre>
 </div>
 <p>Now relaunch the Python console. Within the Python console, import
 the <code>main</code> function from <code>spacewalks</code> and execute
@@ -1821,7 +1819,7 @@ running your Python script:</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-2" class="tab-content">
-<div id="nav-tabpanel-2-macOSorLinux" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-2-macOSorLinux">
+<div id="nav-tabpanel-2-macOSorLinux" class="tab-pane show active" aria-labelledby="nav-tab-2-macOSorLinux" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1830,7 +1828,7 @@ running your Python script:</p>
 <span id="cb23-3"><a href="#cb23-3" tabindex="-1" aria-label="code-block-23-3"></a><span class="ex">$</span> spacewalks</span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-2-Windows" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-Windows">
+<div id="nav-tabpanel-2-Windows" class="tab-pane" aria-labelledby="nav-tab-2-Windows" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2061,7 +2059,7 @@ that the tests run after making your changes.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The top of <code>tests/test_eva_analysis.py</code> should now look
 like this:</p>
@@ -2110,7 +2108,7 @@ installer).</p>
 <div class="codewrapper sourceCode" id="cb42">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" tabindex="-1" aria-label="code-block-42-1"></a><span class="ex">$</span> python3 <span class="at">-m</span> pip install spacewalks-0.1.0-py3-none-any.whl</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" tabindex="-1" aria-label="code-block-42-1"></a><span class="ex">$</span> python <span class="at">-m</span> pip install spacewalks-0.1.0-py3-none-any.whl</span></code></pre>
 </div>
 <p>And then they could import our package in their own Python
 environment:</p>

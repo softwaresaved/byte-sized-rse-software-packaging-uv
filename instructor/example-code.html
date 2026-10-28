@@ -318,7 +318,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Example Code</h1>
-        <p>Last updated on 2026-10-27 |
+        <p>Last updated on 2026-10-28 |
 
         <a href="https://github.com/carpentries-incubator/byte-sized-rse-software-documentation-mkdocs/edit/main/episodes/example-code.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -423,7 +423,7 @@ directory:</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-macOSorLinux" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-macOSorLinux">
+<div id="nav-tabpanel-1-macOSorLinux" class="tab-pane show active" aria-labelledby="nav-tab-1-macOSorLinux" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -432,7 +432,7 @@ directory:</p>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a><span class="kw">(</span><span class="ex">.venv</span><span class="kw">)</span> <span class="ex">$</span></span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-1-Windows" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-Windows">
+<div id="nav-tabpanel-1-Windows" class="tab-pane" aria-labelledby="nav-tab-1-Windows" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -447,16 +447,14 @@ directory:</p>
 prompt between the round brackets: “(.venv)”.</p>
 <p>Next, we will install the necessary dependencies from the
 <code>requirements.txt</code> file using <code>pip</code>:</p>
-<pre><code>$ python3 -m pip install -r requirements.txt</code></pre>
-<p>Note: some users may be able to just use the <code>python</code>
-command instead of <code>python3</code>.</p>
+<pre><code>$ python -m pip install -r requirements.txt</code></pre>
 <p>To ensure the code is working correctly, run the tests using
 Pytest.</p>
-<pre><code>$ python3 -m pytest</code></pre>
+<pre><code>$ python -m pytest</code></pre>
 </section><section><h2 class="section-heading" id="running-the-code">Running the Code<a class="anchor" aria-label="anchor" href="#running-the-code"></a></h2>
 <hr class="half-width"><p>To run the analysis using the <code>eva_data_analysis.py</code>
 script from the command line terminal, do:</p>
-<pre><code>$ python3 eva_data_analysis.py data/eva-data.json results/eva-data.csv</code></pre>
+<pre><code>$ python eva_data_analysis.py data/eva-data.json results/eva-data.csv</code></pre>
 <p>If the code runs successfully, you should get the resulting plot in
 <code>results/cumulative_eva_graph.png</code>.</p>
 <div id="keypoints1" class="callout keypoints">
@@ -540,7 +538,7 @@ any links that you are not going to use.
   "url": "https://carpentries-incubator.github.io/byte-sized-rse-software-documentation-mkdocs/instructor/example-code.html",
   "identifier": "https://carpentries-incubator.github.io/byte-sized-rse-software-documentation-mkdocs/instructor/example-code.html",
   "dateCreated": "2026-04-21",
-  "dateModified": "2026-10-27",
+  "dateModified": "2026-10-28",
   "datePublished": "2026-10-28"
 }
 
