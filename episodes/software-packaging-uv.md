@@ -545,7 +545,7 @@ They fail with the following output:
 ```output
 ================================================ ERRORS ================================================
 _____________________________ ERROR collecting tests/test_eva_analysis.py ______________________________
-ImportError while importing test module '/Users/a.j.lyttle@bham.ac.uk/Repos/github.com/alexlyttle/spacewalks/tests/test_eva_analysis.py'.
+ImportError while importing test module '***/spacewalks/tests/test_eva_analysis.py'.
 Hint: make sure your test modules/packages have valid Python names.
 Traceback:
 /opt/homebrew/Cellar/python@3.14/3.14.10/Frameworks/Python.framework/Versions/3.14/lib/python3.14/importlib/__init__.py:88: in import_module
