@@ -5,16 +5,6 @@ version: "alpha"
 doi: ""
 url: "https://softwaresaved.github.io/byte-sized-rse-software-packaging-uv/"
 authors:
-  - given-names: "Jeremy"
-    family-names: "Cohen"
-    orcid: "https://orcid.org/0000-0003-4312-2537"
-    affiliation: ""
-    url: "https://github.com/jcohen02"
-  - given-names: "Steve"
-    family-names: "Crouch"
-    orcid: "https://orcid.org/0000-0001-8985-6814"
-    affiliation: ""
-    url: "https://github.com/steve-crouch"
   - given-names: "Aleksandra"
     family-names: "Nenadic"
     orcid: "https://orcid.org/0000-0002-2269-3894"
@@ -25,6 +15,6 @@ type: "generic"
 keywords:
   - research software engineering
   - RSE
-  - software documentation
-  - mkdocs
+  - software packaging
+  - uv
 repository-code: "https://github.com/softwaresaved/byte-sized-rse-software-packaging-uv"
