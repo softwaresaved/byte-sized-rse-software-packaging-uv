@@ -10,6 +10,10 @@ authors:
     orcid: "https://orcid.org/0000-0002-2269-3894"
     affiliation: ""
     url: "https://github.com/anenadic"
+  - given-names: "Alexander"
+    family-names: "Lyttle"
+    orcid: "https://orcid.org/0000-0001-8355-8082"
+    affiliation: "Advanced Research Computing, University of Birmingham"
 license: "CC-BY-4.0"
 type: "generic"
 keywords:
