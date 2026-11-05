@@ -35,4 +35,5 @@ N/A
 
 ## Acknowledgements
 
-TODO
+This material has been developed according to the **Byte-sized RSE** format first introduced by [Steve Crouch](github.com/steve-crouch) and [Jeremy Cohen](https://github.com/jcohen02) originally as part the [UNIVERSE-HPC](https://www.universe-hpc.ac.uk/) project.
+
